@@ -10,9 +10,9 @@ load_dotenv()  # take environment variables from .env.
 
 client = boto3.client('rekognition')
 
-photo = "lobby2.jpg"
+photo = "lobby.jpg"
 with open(photo, "rb") as image:
     source_bytes = image.read()
 
 detect_objects = client.detect_labels(Image={'Bytes': source_bytes})
-print(detect_objects)
+print([i["Name"] for i in detect_objects["Labels"]])

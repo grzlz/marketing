@@ -10,7 +10,7 @@ load_dotenv()  # take environment variables from .env.
 
 client = boto3.client('rekognition')
 
-photo = "photo1.jpeg"
+photo = "lobby2.jpg"
 with open(photo, "rb") as image:
     source_bytes = image.read()
 

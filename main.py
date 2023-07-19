@@ -10,7 +10,10 @@ load_dotenv()  # take environment variables from .env.
 
 client = boto3.client('rekognition')
 
-photo = "lobby.jpg"
+
+photo = input("What image do you want to upload? Options: fachada.jpg, lobby.jpg ")
+
+
 with open(photo, "rb") as image:
     source_bytes = image.read()
 

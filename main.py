@@ -18,4 +18,12 @@ with open(photo, "rb") as image:
     source_bytes = image.read()
 
 detect_objects = client.detect_labels(Image={'Bytes': source_bytes})
-print([i["Name"] for i in detect_objects["Labels"]])
+labels = [i["Name"] for i in detect_objects["Labels"]]
+
+for label in labels:
+    print(f"The next label is: {label}")
+
+def refine_data(list_items):
+    print(list_items)
+
+refine_data(labels)

@@ -22,9 +22,32 @@
 
 # for label in labels:
 #     print(f"The next label is: {label}")
+
 labels = ['Architecture', 'Building', 'Office Building', 'City', 'Condo', 'Housing', 'Urban', 'High Rise', 'Apartment Building', 'Tower', 'Car', 'Transportation', 'Vehicle', 'Convention Center']
 
 def refine_data(list_items):
     print(list_items)
+import openai
+
+# Replace with your own API key
+openai.api_key = ''
+
+def refine_data(list_items):
+    conversation = [{"role": "system", "content": f"utilicé el servicio de amazon rekognition para generar etiquetas de la imagen de la fachada de un hotel y obtuve esta lista: {list_items}. Necesito que mejores esta lista basándote en la descripción siguiente: El hotel está ubicado en la Alcaldía Cuajimalpa, Ciudad de México. El hotel ofrece alojamiento para familias y también tiene planes para viajes de negocios de corporaciones."}]
+    print("Hola, soy ChatBunny yeyeye!")
+    while(True):
+        user_input = input(">>")
+        conversation.append({"role":"user", "content": user_input})
+        if user_input == "Close":
+            break
+        else:
+            response = openai.ChatCompletion.create(
+                model = "gpt-3.5-turbo",
+                messages = conversation
+            )
+            conversation.append({"role": "assistant", "content": response['choices'][0]['message']['content']})
+            print("\n" + response['choices'][0]['message']['content'] + "\n")
 
 refine_data(labels)
+
+
